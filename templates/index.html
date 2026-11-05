@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Network Topology Simulator</title>
+
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 25px;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        .panel {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        select, button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #0284c7;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0369a1;
+        }
+
+        #cy {
+            width: 100%;
+            height: 480px;
+            background: #020617;
+            border: 1px solid #334155;
+            border-radius: 12px;
+        }
+
+        #deviceList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .device-item {
+            background: #334155;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        #status {
+            color: #4ade80;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🌐 Network Topology Simulator</h1>
+    <p>Create network devices, generate topologies, and simulate packet transmission.</p>
+
+    <div class="panel">
+        <h2>Network Controls</h2>
+
+        <label for="deviceType">Device Type:</label>
+
+        <select id="deviceType">
+            <option value="Computer">Computer</option>
+            <option value="Router">Router</option>
+            <option value="Switch">Switch</option>
+            <option value="Server">Server</option>
+        </select>
+
+        <button id="addDeviceBtn">Add Device</button>
+
+        <br><br>
+
+        <label for="topology">Choose Topology:</label>
+
+        <select id="topology">
+            <option value="star">Star</option>
+            <option value="ring">Ring</option>
+            <option value="mesh">Mesh</option>
+            <option value="bus">Bus</option>
+        </select>
+
+        <button id="generateBtn">Generate Topology</button>
+
+        <button id="sendPacketBtn">Send Packet</button>
+
+        <div id="status" role="status">Ready to create your network.</div>
+
+        <div id="deviceList"></div>
+    </div>
+
+    <div class="panel">
+        <h2>Network Diagram</h2>
+        <div id="cy"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/simulator.js') }}"></script>
+
+</body>
+</html>
